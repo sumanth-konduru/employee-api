@@ -1,0 +1,41 @@
+#%RAML 1.0
+title: Employee API
+
+types:
+  Employee: !include data types/employeeDataType.raml
+
+/employee:
+  get:
+    description: Get the employees details.
+    responses:
+      200:
+        body:
+          application/json:
+            type: Employee[]
+            examples:
+              value: !include examples/employeesExample.raml
+  post:
+    description: Create an employee details.
+    body:
+      application/json:
+        type: Employee
+        examples:
+          value: !include examples/employeeExample.raml
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+              message: Employee added
+        
+  /{ID}:
+    get:
+      description: get the employee details.
+      responses:
+        200:
+          body:
+            application/json:
+              type: Employee
+              example:
+                value: !include examples/employeeExample.raml
+    
